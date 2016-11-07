@@ -2,7 +2,7 @@ Package: cifti
 Type: Package
 Title: Toolbox for Connectivity Informatics Technology Initiative ('CIFTI') 
     files
-Version: 0.3
+Version: 0.4
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Reads in 'CIFTI' files (https://www.nitrc.org/projects/cifti/).
@@ -11,7 +11,8 @@ Imports:
     xml2,
     base64enc,
     rgl,
-    oro.nifti
+    oro.nifti,
+    utils
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1.9000

@@ -28,7 +28,7 @@ parse_volume = function(nodeset) {
       vert_attr = lapply(vert_attr,
                          as.list)
     } else {
-      if (length(vert_attr) == 0){
+      if (length(vert_attr) == 0) {
         vert_attr = NULL
       }
       vert_attr = as.list(vert_attr[[1]])
@@ -48,6 +48,9 @@ parse_volume = function(nodeset) {
   verts = mapply(function(x, a) {
     list(mat = x, VolumeDimensions = a)
   }, verts, all_names, SIMPLIFY = FALSE)
+  if (length(verts) == 1) {
+    verts = verts[[1]]
+  }
   return(verts)
 }
 
