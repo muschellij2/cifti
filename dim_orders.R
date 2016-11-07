@@ -24,7 +24,7 @@ if (dtype == "CIFTI_INDEX_TYPE_SERIES") {
 if (dtype == "CIFTI_INDEX_TYPE_TIME_POINTS") {
   time_unit = xml_attr(node, "TimeStepUnits")
   if (time_unit %in% 'NIFTI_UNITS_SEC') {
-    Cifti.fsample = 1/str2double(MatrixIndicesMap(i).TimeStep);
+    # Cifti.fsample = 1/str2double(MatrixIndicesMap(i).TimeStep);
   } else {
     stop("Unsupported timeframe")
   }

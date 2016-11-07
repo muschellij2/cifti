@@ -3,3 +3,6 @@
 
 test.R
 ^\.travis\.yml$
+
+dim_orders.R
+test_cifti.R

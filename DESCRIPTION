@@ -10,7 +10,8 @@ License: GPL-2
 Imports:
     xml2,
     base64enc,
-    rgl
+    rgl,
+    oro.nifti
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1.9000

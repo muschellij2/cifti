@@ -20,8 +20,6 @@ surf = readgii(surf_fname)
 
 
 
-
-
   make_attr = function(x, which, value) {
       mapply(function(w, v) {
         attr(x, which = w) = v

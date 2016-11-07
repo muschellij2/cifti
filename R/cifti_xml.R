@@ -2,10 +2,16 @@
 #' @title Extract CIFTI XML
 #' @description Extracts CIFTI XML from the CIFTI file
 #' @param fname filename of CIFTI
+#' @param nim NIfTI-2 header, if already parsed.
+#' If \code{NULL}, \code{\link{nifti_2_hdr}}
+#' will be run on the CIFTI.
 #'
 #' @return Character string of XML information
 #' @export
-cifti_xml = function(fname){
+cifti_xml = function(fname, nim = NULL){
+  if (is.null(nim)) {
+    nim = nifti_2_hdr(fname = fname)
+  }
   fid = file(fname, "rb")
   on.exit({
     close(fid)
@@ -23,6 +29,7 @@ cifti_xml = function(fname){
   etype = readBin(fid,
                   what = integer(),
                   size = 4)
+
 
   hdrsize = 540;
   voxsize = filesize - nim@vox_offset;

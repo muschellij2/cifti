@@ -1,3 +1,9 @@
+#' @title Parse Parcel from CIFTI
+#' @description Extracts information about Parcels from CIFTI file
+#' @param nodeset Set of XML nodes corresponding to \code{Parcel}
+#'
+#' @return List of values
+#' @export
 parse_parcel = function(nodeset) {
   n_nodes = length(nodeset)
   all_names = xml_attrs(nodeset, "Name")
@@ -35,4 +41,13 @@ parse_parcel = function(nodeset) {
   verts = lapply(vert_nodes, get_verts)
   names(verts) = all_names
   return(verts)
+}
+
+#' @rdname parse_parcel
+#' @param fname filename of CIFTI file
+#' @export
+get_parcel = function(fname) {
+  nodes = matrix_ind_map_nodes(fname)
+  nodeset = xml_find_all(nodes, "./Parcel")
+  parse_parcel(nodeset)
 }

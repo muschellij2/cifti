@@ -1,3 +1,17 @@
+#' @title Parse Named Map from CIFTI
+#' @description Extracts information about Named Maps from CIFTI file
+#' @param nodeset Set of XML nodes corresponding to \code{NamedMap}
+#'
+#' @return List of values
+#' @export
+#'
+#' @examples \dontrun{
+#' xmldata = cifti_xml(fname)
+#' doc = read_xml(xmldata)
+#' nodes = xml_find_all(doc, "/CIFTI/Matrix/MatrixIndicesMap")
+#' nodeset = xml_find_all(nodes, "./NamedMap")
+#' parse_named_map(nodeset)
+#' }
 parse_named_map = function(nodeset) {
   n_nodes = length(nodeset)
   all_attrs = xml_attrs(nodeset)
@@ -33,4 +47,14 @@ parse_named_map = function(nodeset) {
     names(lt) = mn
   }
   return(lt)
+}
+
+
+#' @rdname parse_named_map
+#' @param fname filename of CIFTI file
+#' @export
+get_named_map = function(fname) {
+  nodes = matrix_ind_map_nodes(fname)
+  nodeset = xml_find_all(nodes, "./NamedMap")
+  parse_named_map(nodeset)
 }

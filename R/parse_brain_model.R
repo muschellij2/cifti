@@ -1,3 +1,17 @@
+#' @title Parse BrainModel from CIFTI
+#' @description Extracts information about BrainModels from CIFTI file
+#' @param nodeset Set of XML nodes corresponding to \code{BrainModel}
+#'
+#' @return List of values
+#' @export
+#'
+#' @examples \dontrun{
+#' xmldata = cifti_xml(fname)
+#' doc = read_xml(xmldata)
+#' nodes = xml_find_all(doc, "/CIFTI/Matrix/MatrixIndicesMap")
+#' nodeset = xml_find_all(nodes, "./BrainModel")
+#' }
+#' @importFrom xml2 xml_attrs xml_find_all xml_text
 parse_brain_model = function(nodeset) {
   n_nodes = length(nodeset)
   all_attrs = xml_attrs(nodeset)
@@ -68,4 +82,13 @@ parse_brain_model = function(nodeset) {
   verts[n_vox] = vox[n_vox]
 
   return(verts)
+}
+
+#' @rdname parse_brain_model
+#' @param fname filename of CIFTI file
+#' @export
+get_brain_model = function(fname) {
+  nodes = matrix_ind_map_nodes(fname)
+  nodeset = xml_find_all(nodes, "./BrainModel")
+  parse_brain_model(nodeset)
 }
