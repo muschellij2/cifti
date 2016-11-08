@@ -1,11 +1,13 @@
 Package: cifti
 Type: Package
 Title: Toolbox for Connectivity Informatics Technology Initiative ('CIFTI') 
-    files
+    Files
 Version: 0.4
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
-Description: Reads in 'CIFTI' files (https://www.nitrc.org/projects/cifti/).
+Description:  Functions for the input/output and visualization of
+    medical imaging data in the form of 'CIFTI' files 
+    (https://www.nitrc.org/projects/cifti/).
 License: GPL-2
 Imports:
     xml2,
@@ -13,6 +15,9 @@ Imports:
     rgl,
     oro.nifti,
     utils
+Suggests:
+    gifti
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1.9000
+Remotes: muschellij2/gifti
