@@ -6,3 +6,5 @@ test.R
 
 dim_orders.R
 test_cifti.R
+
+vignettes/*
