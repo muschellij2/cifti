@@ -15,4 +15,3 @@ Logical of length same as x
 \description{
 Wrapper of CIFTI fields for easy logical test
 }
-

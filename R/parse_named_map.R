@@ -6,8 +6,7 @@
 #' @export
 #'
 #' @examples \dontrun{
-#' xmldata = cifti_xml(fname)
-#' doc = read_xml(xmldata)
+#' doc = cifti_xml(fname)
 #' nodes = xml_find_all(doc, "/CIFTI/Matrix/MatrixIndicesMap")
 #' nodeset = xml_find_all(nodes, "./NamedMap")
 #' parse_named_map(nodeset)
@@ -43,10 +42,12 @@ parse_named_map = function(nodeset) {
     att$Alpha = make_num(att$Alpha)
     return(att)
   })
-  if (length(lt) > 0) {
-    names(lt) = mn
+  L = list(map_names = mn,
+           look_up_table = lt)
+  if (length(lt) == 0) {
+    L$look_up_table = NULL
   }
-  return(lt)
+  return(L)
 }
 
 

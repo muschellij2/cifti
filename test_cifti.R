@@ -4,6 +4,7 @@ library(gifti)
 library(rgl)
 library(RColorBrewer)
 library(matrixStats)
+library(cifti)
 onefile=TRUE
 gzipped=FALSE
 verbose=TRUE
@@ -16,38 +17,33 @@ surf_fname = "~/Downloads/cifti-2_test_data/Conte69.L.inflated.32k_fs_LR.surf.gi
 surf = readgii(surf_fname)
 
 
+make_attr = function(x, which, value) {
+  mapply(function(w, v) {
+    attr(x, which = w) = v
+  }, which, value, SIMPLIFY = FALSE)
+  return(x)
+}
 
-
-
-
-  make_attr = function(x, which, value) {
-      mapply(function(w, v) {
-        attr(x, which = w) = v
-      }, which, value, SIMPLIFY = FALSE)
-      return(x)
-  }
-
-
-
-
-
-  # xpath = switch(cifti_version,
-  #   # "1.0" = '/CIFTI/Matrix/Volume',
-  #   # "1" = '/CIFTI/Matrix/Volume',
-  #   "2.0" = './BrainModel',
-  #   "2" = './BrainModel'
-  #   )
+# xpath = switch(cifti_version,
+#   # "1.0" = '/CIFTI/Matrix/Volume',
+#   # "1" = '/CIFTI/Matrix/Volume',
+#   "2.0" = './BrainModel',
+#   "2" = './BrainModel'
+#   )
 
 
 
 
 nim = nifti_2_hdr(fname)
 
-xmldata = cifti_xml(fname)
-data = cifti_data(fname, nim = nim)
-data = drop(data)
-data = t(data)
-doc = read_xml(xmldata)
+# xmldata = cifti_xml_txt(fname)
+
+data = read_cifti(fname)
+n = sapply(data$BrainModel, attr, "BrainStructure")
+names(data$BrainModel) = n
+ind = data$BrainModel$CIFTI_STRUCTURE_CORTEX_LEFT + 1
+data = data$data
+doc = cifti_xml(fname)
 doc = xml_ns_strip(doc)
 # xml_attrs(doc)
 # L = list(nim)
@@ -56,8 +52,9 @@ doc_attrs = xml_attrs(doc)
 cifti_version = doc_attrs["Version"]
 stopifnot(cifti_version %in% c("2.0", "2"))
 
-nodes = xml_find_all(doc,
-                     "/CIFTI/Matrix/MatrixIndicesMap")
+nodes = xml_find_all(
+  doc,
+  "/CIFTI/Matrix/MatrixIndicesMap")
 
 run_attr = xml_attrs(nodes)
 types = c("Volume", "Surface",
@@ -65,14 +62,14 @@ types = c("Volume", "Surface",
           "BrainModel")
 
 
-  nodeset = xml_find_all(nodes, "./Volume")
-  vols = parse_volume(nodeset)
+nodeset = xml_find_all(nodes, "./Volume")
+vols = parse_volume(nodeset)
 
-  nodeset = xml_find_all(nodes, "./BrainModel")
+nodeset = xml_find_all(nodes, "./BrainModel")
 
-  verts = parse_brain_model(nodeset)
+verts = parse_brain_model(nodeset)
 
- nodeset = xml_find_all(nodes, "./NamedMap")
+nodeset = xml_find_all(nodes, "./NamedMap")
 
 lt = parse_named_map(nodeset)
 
@@ -83,17 +80,18 @@ pars = parse_parcel(nodeset)
 
 xL = L = surf$data
 
-reg_verts =  L$vertices
-faces = as.vector(t(L$faces) + 1)
-surf_verts = L$vertices[faces,]
+reg_verts =  L$pointset
+faces = as.vector(t(L$triangle) + 1)
+surf_verts = L$pointset[faces,]
 # norms = L$normals[faces,]
+# rgl.triangles(x = surf_verts)
 
-ind = verts[[1]] + 1
+# ind = verts[[1]] + 1
 # faces = L$faces
 # run_verts = run_verts[faces, ]
 
-good_data = rep(NA, length = nrow(reg_verts))
-good_data[ind] = data[, 1]
+good_data = rep(NA, length = nrow(L$pointset))
+good_data[ind] = data[seq(length(ind)), 1]
 
 cdata = good_data[faces]
 # d = data[ind, 1]
@@ -112,9 +110,9 @@ n = 20
 # breaks = seq(min(cdata), max(cdata), length.out = n)
 grid = 0.4
 breaks = seq(min(cdata, na.rm = TRUE),
-   max(cdata, na.rm = TRUE) + grid, by = grid)
+             max(cdata, na.rm = TRUE) + grid, by = grid)
 ints = cut(cdata, include.lowest = TRUE,
-  breaks = breaks)
+           breaks = breaks)
 ints = as.integer(ints)
 # stopifnot(!any(is.na(ints)))
 cols = mypal(n)[ints]

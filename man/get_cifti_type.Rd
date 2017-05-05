@@ -18,4 +18,3 @@ List of output from each type
 \description{
 Wrapper for multiple types of CIFTI XML types.
 }
-

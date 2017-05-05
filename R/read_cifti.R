@@ -43,6 +43,7 @@ read_cifti = function(fname,
   res$data = data
   hdr = nifti_2_hdr(fname)
   res$hdr = hdr
+  class(res) = "cifti"
 
   return(res)
 }
@@ -55,5 +56,16 @@ readCIFTI = function(fname,
   res = read_cifti(fname = fname,
              drop_data = drop_data,
              trans_data = trans_data)
+  return(res)
+}
+
+#' @rdname read_cifti
+#' @export
+readcii = function(fname,
+                     drop_data = TRUE,
+                     trans_data = TRUE) {
+  res = read_cifti(fname = fname,
+                   drop_data = drop_data,
+                   trans_data = trans_data)
   return(res)
 }

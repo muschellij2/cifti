@@ -14,6 +14,12 @@ download_cifti_data = function(
   overwrite = FALSE,
   ...
   ) {
+  # simple workaround for vignettes
+  if (missing(outdir)) {
+    if (outdir == "") {
+      outdir = tempdir()
+    }
+  }
   expected_files = c("ones.dscalar.nii",
                      "Conte69.MyelinAndCorrThickness.32k_fs_LR.dscalar.nii",
                      "Conte69.R.inflated.32k_fs_LR.surf.gii",
@@ -47,6 +53,12 @@ download_cifti_data = function(
 have_cifti_test_data = function(
   outdir = system.file(package = "cifti")
   ) {
+  # simple workaround for vignettes
+  if (missing(outdir)) {
+    if (outdir == "") {
+      outdir = tempdir()
+    }
+  }
   expected_files = c("ones.dscalar.nii",
                      "Conte69.MyelinAndCorrThickness.32k_fs_LR.dscalar.nii",
                      "Conte69.R.inflated.32k_fs_LR.surf.gii",

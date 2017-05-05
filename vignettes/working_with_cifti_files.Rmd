@@ -1,0 +1,16 @@
+---
+title: "Working with CIFTI Files"
+author: "John Muschelli"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Working with CIFTI Files}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+library(cifti)
+knitr::opts_chunk$set(
+  echo = TRUE, cache = TRUE, comment = "")
+```
+

@@ -19,4 +19,3 @@ Array of values
 \description{
 Extracts the data after the CIFTI XML information
 }
-

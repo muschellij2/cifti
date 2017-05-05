@@ -8,7 +8,7 @@
 #'
 #' @return Character string of XML information
 #' @export
-cifti_xml = function(fname, nim = NULL){
+cifti_xml_txt = function(fname, nim = NULL){
   if (is.null(nim)) {
     nim = nifti_2_hdr(fname = fname)
   }
@@ -43,4 +43,14 @@ cifti_xml = function(fname, nim = NULL){
                             n = esize - 8)
 
   return(xmldata)
+}
+
+#' @rdname cifti_xml_txt
+#' @param ... arguments to pass to \code{cifti_xml}
+#' @importFrom xml2 read_xml
+#' @export
+cifti_xml = function(...) {
+  xmldata = cifti_xml_txt(...)
+  doc = read_xml(xmldata)
+  return(doc)
 }

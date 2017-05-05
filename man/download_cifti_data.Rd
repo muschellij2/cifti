@@ -21,4 +21,3 @@ Vector of file names
 Downloads CIFTI test data from
 \url{https://www.nitrc.org/frs/download.php/8541/cifti-2_test_data-1.2.zip}
 }
-

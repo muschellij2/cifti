@@ -16,4 +16,3 @@ Nodes of class \code{xml_nodeset}
 Extracts the nodes from a CIFTI-2 file corresponding to the
 \code{MatrixIndicesMap} branch
 }
-

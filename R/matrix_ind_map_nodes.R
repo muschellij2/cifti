@@ -6,9 +6,8 @@
 #'
 #' @return Nodes of class \code{xml_nodeset}
 #' @export
-#' @importFrom xml2 read_xml xml_find_all
+#' @importFrom xml2 xml_find_all
 matrix_ind_map_nodes = function(fname) {
-  xmldata = cifti_xml(fname)
-  doc = read_xml(xmldata)
+  doc = cifti_xml(fname)
   nodes = xml_find_all(doc, "/CIFTI/Matrix/MatrixIndicesMap")
 }

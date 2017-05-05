@@ -6,8 +6,7 @@
 #' @export
 #'
 #' @examples \dontrun{
-#' xmldata = cifti_xml(fname)
-#' doc = read_xml(xmldata)
+#' doc = cifti_xml(fname)
 #' nodes = xml_find_all(doc, "/CIFTI/Matrix/MatrixIndicesMap")
 #' nodeset = xml_find_all(nodes, "./BrainModel")
 #' }

@@ -20,4 +20,3 @@ Character vector
 Simple wrapper for reading in character values with embedded nulls in a
 binary file
 }
-

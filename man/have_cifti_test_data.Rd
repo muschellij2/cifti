@@ -15,4 +15,3 @@ Logical indicator
 \description{
 Checks if CIFTI test data is downloaded
 }
-
