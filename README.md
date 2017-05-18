@@ -6,6 +6,8 @@ This is a Toolbox for Connectivity Informatics Technology Initiative ('CIFTI') F
 
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/cifti?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/cifti)
 
+[![Coverage Status](https://img.shields.io/coveralls/muschellij2/cifti.svg)](https://coveralls.io/r/muschellij2/cifti?branch=master)
+
 ## Installation
 
 You can install cifti from github with:
