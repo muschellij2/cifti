@@ -1,8 +1,18 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
 language: R
 sudo: false
 cache: packages
 
 after_success:
   - Rscript -e 'covr::coveralls()'
+  - R CMD INSTALL --build ${PKG_TARBALL}
+
+deploy:
+  provider: releases
+  skip_cleanup: true  
+  api_key:
+    secure: RlZVgXeqZKJkgygS1ThtkY2HVfRloqe7A8aa0MQCBmJl/+i7Y26Jxb+oFon7N2vko2hbC0pWzO12HuSaLqx8Aa6Oe6UA4Nw/2360BFm95oyduH6LjDLSj8I8/EMAfrJfv/BLqAmCk4Mw463g4tqLVrO7BYpNFq7iNQ/U6JV4XADh7vPB28LNvcu383HOf52/8d3HXqT6ZEZTSTh4kGx0kNj2Q5SLHBtPHn+5UQrjtxkL8z6sumbPYJ7LAVUraZlntqFF32EESYt/VBODFemy95ZwAXZLSGvQQiWfIuWgyE1IlIVLkclkT+mpqULkp+KHjSq2iEd13m9E4nB7LwJeFrgNnVSVYH89fK5PSNod9TGX/S7Hquhsd7pbbDIwQagRAipS5VJzx9SGczylfRiBLu3LZZ9wLjhEGleJ4nrZ1tGtGk+W1VqNm/fqA5Ov3xvSfcLvqqqDbwU3hYlmWD2a9x4+GFH1LNzu8R2O5klawzN/PXjAnpYfrUQ1I4Iicdu1t9NCxoaaFZmt1+cC+0DgScYA/EBErbOUfOhbSmGqXGI6LgxR67o/ezwf3XQuGO0Sk5rA/GWDWa/rEjmlZlINXSCXOawDKFuMwzX8q5XgbpDlpc8RNSUiWl+jYsBHnsgnFY/9vGZ0XWdzxWkHMnJDtgJkmKXYxfxDkARRAcQ4X7s=
+    file_glob: true
+  file: cifti*.t*gz
+  on:
+    tags: true        
+    repo: muschellij2/cifti
