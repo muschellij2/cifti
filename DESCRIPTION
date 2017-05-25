@@ -2,7 +2,7 @@ Package: cifti
 Type: Package
 Title: Toolbox for Connectivity Informatics Technology Initiative ('CIFTI') 
     Files
-Version: 0.4.2
+Version: 0.4.3
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Functions for the input/output and visualization of
