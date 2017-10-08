@@ -3,7 +3,8 @@ Type: Package
 Title: Toolbox for Connectivity Informatics Technology Initiative ('CIFTI') 
     Files
 Version: 0.4.4
-Author: John Muschelli
+Authors@R: person(given = "John", family = "Muschelli", 
+    role = c("aut", "cre"), email = "muschellij2@gmail.com")
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Functions for the input/output and visualization of
     medical imaging data in the form of 'CIFTI' files 
