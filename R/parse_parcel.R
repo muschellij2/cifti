@@ -13,7 +13,10 @@ parse_parcel = function(nodeset) {
                       xml_find_all,
                       xpath = "./Vertices")
 
+  # i = 1
   get_verts = function(node) {
+    # print(i)
+    # i <<- i + 1
     vert_attr = xml_attrs(node)
     if (length(vert_attr) > 1){
       vert_attr = lapply(vert_attr,
@@ -22,7 +25,7 @@ parse_parcel = function(nodeset) {
       if (length(vert_attr) == 0){
         vert_attr = NULL
       }
-      vert_attr = as.list(vert_attr[[1]])
+      vert_attr = as.list(vert_attr[1])
     }
     verts = xml_text(node)
     if (length(verts) > 0) {
@@ -32,7 +35,7 @@ parse_parcel = function(nodeset) {
       verts = lapply(verts, `[[`, 1)
       verts = lapply(verts, as.numeric)
       verts = mapply(function(x, a){
-        attributes(x) = a
+        attributes(x) = as.list(a)
         return(x)
       }, verts, vert_attr, SIMPLIFY = FALSE)
     }

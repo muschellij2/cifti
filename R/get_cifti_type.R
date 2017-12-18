@@ -5,6 +5,7 @@
 #'
 #' @return List of output from each type
 #' @export
+#' @importFrom R.utils gunzip
 get_cifti_type = function(
   fname,
   type = c("Volume", "Surface",

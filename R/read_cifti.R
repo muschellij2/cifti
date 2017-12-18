@@ -16,6 +16,7 @@
 read_cifti = function(fname,
                       drop_data = TRUE,
                       trans_data = TRUE) {
+  fname = nii_fname(fname)
   res = get_cifti_type(fname)
   data = cifti_data(fname)
 
