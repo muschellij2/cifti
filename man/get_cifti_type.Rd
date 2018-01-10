@@ -2,9 +2,13 @@
 % Please edit documentation in R/get_cifti_type.R
 \name{get_cifti_type}
 \alias{get_cifti_type}
+\alias{cifti_as_list}
 \title{Get Generic CIFTI Type}
 \usage{
 get_cifti_type(fname, type = c("Volume", "Surface", "Parcel", "NamedMap",
+  "BrainModel"))
+
+cifti_as_list(fname, type = c("Volume", "Surface", "Parcel", "NamedMap",
   "BrainModel"))
 }
 \arguments{

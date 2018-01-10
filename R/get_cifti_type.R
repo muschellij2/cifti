@@ -6,6 +6,7 @@
 #' @return List of output from each type
 #' @export
 #' @importFrom R.utils gunzip
+#' @importFrom xml2 as_list
 get_cifti_type = function(
   fname,
   type = c("Volume", "Surface",
@@ -25,6 +26,27 @@ get_cifti_type = function(
   names(res) = type
   L = sapply(res, length)
   res = res[L > 0]
+  return(res)
+
+}
+
+#' @rdname get_cifti_type
+cifti_as_list = function(
+  fname,
+  type = c("Volume", "Surface",
+           "Parcel",  "NamedMap",
+           "BrainModel")) {
+  type = match.arg(type, several.ok = TRUE)
+
+  nodes = matrix_ind_map_nodes(fname)
+  res = lapply(type, function(x) {
+    xml_find_all(nodes, paste0("./", x))
+  })
+  names(res) = type
+  L = sapply(res, length)
+  res = res[L > 0]
+  res = lapply(res, xml2::as_list)
+
   return(res)
 
 }

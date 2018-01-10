@@ -6,3 +6,4 @@ dim_orders.R
 test_cifti.R
 ^appveyor\.yml$
 docs/
+R/write_cifti.R

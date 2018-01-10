@@ -21,5 +21,6 @@ Reads a NIfTI-2 header from a filename
 }
 \note{
 The \code{unused_str} part of the header is not returned, but is an
-empty string of 15 characters
+empty string of 15 characters.  This code was adapted by
+the \code{oro.nifti} package
 }
