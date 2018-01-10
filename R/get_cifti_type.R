@@ -31,6 +31,7 @@ get_cifti_type = function(
 }
 
 #' @rdname get_cifti_type
+#' @export
 cifti_as_list = function(
   fname,
   type = c("Volume", "Surface",
