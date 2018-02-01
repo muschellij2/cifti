@@ -12,8 +12,6 @@ Description: Functions for the input/output and visualization of
 License: GPL-2
 Imports:
     xml2,
-    base64enc,
-    rgl,
     oro.nifti,
     gifti,
     utils,
