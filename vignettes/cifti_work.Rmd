@@ -13,7 +13,7 @@ vignette: >
 ```{r setup, include=FALSE}
 library(cifti)
 knitr::opts_chunk$set(
-  echo = TRUE, cache = TRUE, comment = "")
+  echo = TRUE, cache = FALSE, comment = "")
 ```
 
 
