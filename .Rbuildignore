@@ -7,3 +7,4 @@ test_cifti.R
 ^appveyor\.yml$
 docs/
 R/write_cifti.R
+^cran-comments\.md$
