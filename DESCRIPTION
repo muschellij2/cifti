@@ -2,7 +2,8 @@ Package: cifti
 Type: Package
 Title: Toolbox for Connectivity Informatics Technology Initiative ('CIFTI') 
     Files
-Version: 0.4.5
+Version: 0.4.5.9000
+Date: 2018-05-24
 Authors@R: person(given = "John", family = "Muschelli", 
     role = c("aut", "cre"), email = "muschellij2@gmail.com")
 Maintainer: John Muschelli <muschellij2@gmail.com>
