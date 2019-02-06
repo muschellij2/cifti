@@ -1,5 +1,8 @@
 # cifti
 
+Updates:
+2/6/2019 - Update parse_brain_model to include attributes for voxel-based structures (e.g., subcortical)
+
 This is a Toolbox for Connectivity Informatics Technology Initiative ('CIFTI') Files
     
 [![Travis-CI Build Status](https://travis-ci.org/muschellij2/cifti.svg?branch=master)](https://travis-ci.org/muschellij2/cifti)
@@ -15,5 +18,5 @@ You can install cifti from github with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("muschellij2/cifti")
+devtools::install_github("mychan24/cifti")
 ```

@@ -78,8 +78,14 @@ parse_brain_model = function(nodeset) {
     attributes(i) = l
     return(i)
   }, verts, all_attrs, SIMPLIFY = FALSE)
+
+  vox[n_vox] <- mapply(FUN = function(i,j){
+    attributes(i)$VoxelIndicesIJK <- j
+    return(i)
+    },verts[n_vox], vox[n_vox])
   verts[n_vox] = vox[n_vox]
 
+  # =====
   return(verts)
 }
 
