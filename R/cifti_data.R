@@ -55,7 +55,17 @@ cifti_data = function(fname, nim = NULL) {
   }
 
   cifti_dim = img_dim[6:8]
-  vals = array(vals, dim = cifti_dim)
+  ## === myc 20190207
+  # some cifti (e.g., MSC) has dense data (60k+ vertex) comes first
+  # Dimension       : 1 x 1 x 1 x 1 x 65890 x 818
+  # Whereas standard cifti has rows * dense for dtseries https://www.humanconnectome.org/software/workbench-command/-cifti-help
+  if(cifti_dim[1] > cifti_dim[2]){
+    vals = array(vals, dim = img_dim[c(7,6,8)])               # fill array based on dense coming first
+    vals = array(t(as.matrix(vals[,,])), dim = cifti_dim)     # transform array back to origianl dimension to match header
+  }else{
+    vals = array(vals, dim = cifti_dim)
+  }
+
   # [m, n] = size(voxdata);
   # if m>n
   # dat = nan(Ngreynodes,n);
