@@ -3,4 +3,4 @@
 .RData
 .Ruserdata
 inst/doc
-vignettes/test_ciftiRmd.Rmd
+vignettes/*.Rmd
