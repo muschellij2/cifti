@@ -2,11 +2,7 @@
 title: "Test Cifti Original Package"
 author: "myc"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Test Cifti Original Package}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: html_document
 ---
 
 ## Package
@@ -15,7 +11,8 @@ vignette: >
 * It may not reproduce the error if the version has been updated. 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-devtools::install_github("muschellij2/cifti")
+# devtools::install_github("muschellij2/cifti")
+install.packages("cifti", repos='http://cran.us.r-project.org')
 library(cifti)
 
 download_cifti_data(outdir = "../inst/")

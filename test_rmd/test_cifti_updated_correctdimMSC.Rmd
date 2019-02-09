@@ -2,11 +2,8 @@
 title: "Test Cifti Updated Package"
 author: "myc"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Test Cifti Updated Package}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: html_document
+
 ---
 
 ```{r setup, include=FALSE}
