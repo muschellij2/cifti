@@ -3,4 +3,5 @@
 .RData
 .Ruserdata
 inst/doc
-vignettes/*.Rmd
+inst/cifti-2_test_data
+inst/msc/sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii
