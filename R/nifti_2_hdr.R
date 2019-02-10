@@ -97,13 +97,22 @@ nifti_2_hdr = function(fname, verbose = FALSE, warn = -1) {
   nim@"srow_y" <- readBin(fid, double(), 4, size=8, endian=endian)
   nim@"srow_z" <- readBin(fid, double(), 4, size=8, endian=endian)
 
+  # nim@"slice_code" <- readBin(fid, integer(),
+  #                             size=4, signed=FALSE,
+  #                             endian=endian)
+  # nim@"xyzt_units" <- readBin(fid, integer(),
+  #                             size=4, signed=FALSE, endian=endian)
+  # nim@"intent_code" = readBin(fid, integer(),
+  #                             size=4, signed=FALSE, endian=endian)
   nim@"slice_code" <- readBin(fid, integer(),
-                              size=4, signed=FALSE,
-                              endian=endian)
+                              size = 4,
+                              endian = endian)
   nim@"xyzt_units" <- readBin(fid, integer(),
-                              size=4, signed=FALSE, endian=endian)
+                              size = 4,
+                              endian = endian)
   nim@"intent_code" = readBin(fid, integer(),
-                              size=4, signed=FALSE, endian=endian)
+                              size = 4,
+                              endian = endian)
   nim@"intent_name" <- cifti_read_char(fid,
                                        n=16)
   nim@"dim_info" <- cifti_read_char(fid,

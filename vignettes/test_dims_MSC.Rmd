@@ -1,0 +1,132 @@
+---
+title: "Testing the Dimensions with CIFTI Files"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Testing the Dimensions with CIFTI Files}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install_dir = tempfile()
+dir.create(install_dir)
+```
+
+# Load MSC data and test data from cifti package 
+Using `download_cifti_data()` and `download.file` to download the test data.
+
+```{r}
+library(cifti)
+download_cifti_data(outdir = install_dir)
+
+mscfile = file.path(
+  install_dir, 
+  "sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii")
+if (!file.exists(mscfile)) {
+  res = download.file(url = paste0(
+    "https://openneuro.org/crn/datasets/ds000224/snapshots/00002/files/", 
+    "derivatives:", "surface_pipeline:", "sub-MSC01:",
+    "processed_restingstate_timecourses:",  "ses-func01:cifti:",
+    "sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii"), 
+    destfile = mscfile)
+}
+```
+
+```{r}
+test_dir = file.path(install_dir, "cifti-2_test_data")
+
+ds <- read_cifti(
+  file.path(test_dir,
+            "Conte69.MyelinAndCorrThickness.32k_fs_LR.dscalar.nii")
+  )
+dt <- read_cifti(
+  file.path(test_dir,
+            "Conte69.MyelinAndCorrThickness.32k_fs_LR.dtseries.nii")
+  )
+pt <- read_cifti(
+  file.path(test_dir,
+            "Conte69.MyelinAndCorrThickness.32k_fs_LR.ptseries.nii")
+  )
+dl <- read_cifti(
+  file.path(test_dir, 
+            "Conte69.parcellations_VGD11b.32k_fs_LR.dlabel.nii") 
+  )
+msc <- read_cifti(mscfile, trans_data = FALSE)
+msc_trans <- read_cifti(mscfile, trans_data = TRUE)
+```
+
+
+## For reference: MSC 01 (65890 * 818) (using matlab ft_read_cifti), showing first 5 rows & columns
+```{r, echo = FALSE}
+matfile = system.file("extdata", "msc01_10by10.txt", package = "cifti")
+mat = read.csv(matfile, header = FALSE)
+msc01_refmat <- as.matrix(mat)
+print(msc01_refmat[1:5,1:5])
+```
+## MSC Sub-01 Session 1 (sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii)
+
+`read_cifti(fname = , trans_data = FALSE)`
+* header dimension shows 65890 * 818
+* read in file shows 65890 * 818 by setting trans_data to *FALSE*
+
+```{r}
+msc$hdr
+dim(msc$data)
+
+msc$data[1:5,1:5]
+```
+
+* If transepose is not set to *FALSE* (default is *TRUE*), it will return a 818 * 65890 that is filled correctly, and user just have to `t()` the `cii$data`
+```{r}
+t(msc_trans$data[1:5,1:5])
+```
+
+## Data where dimensions are row x dense loads fine. Updated function loads them the same way as before.
+### Conte69.MyelinAndCorrThickness.32k_fs_LR.dscalar.nii
+
+* Dense file "d", vertex level data
+* Header shows dimension as rows * dense
+```{r}
+ds$hdr
+attributes(ds$BrainModel[[1]])
+attributes(ds$BrainModel[[2]])
+dim(ds$data)
+head(ds$data)
+```
+
+### Conte69.MyelinAndCorrThickness.32k_fs_LR.dtseries.nii
+
+```{r}
+dt$hdr
+attributes(dt$BrainModel[[1]])
+attributes(dt$BrainModel[[2]])
+dim(dt$data)
+head(dt$data)
+```
+
+### Conte69.MyelinAndCorrThickness.32k_fs_LR.ptseries.nii 
+
+* parcel level
+```{r}
+pt$hdr
+dim(pt$data)
+head(pt$data)
+```
+
+
+### Conte69.parcellations_VGD11b.32k_fs_LR.dlabel.nii (dense label on vertex level)
+
+* dense label
+```{r}
+dl$hdr
+dim(dl$data)
+head(dl$data)
+```
+
+
