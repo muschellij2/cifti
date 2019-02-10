@@ -64,7 +64,7 @@ msc_trans <- read_cifti(mscfile, trans_data = TRUE)
 
 ## For reference: MSC 01 (65890 * 818) (using matlab ft_read_cifti), showing first 5 rows & columns
 ```{r, echo = FALSE}
-matfile = system.file("extdata", "msc01_10by10.txt", package = "cifti")
+matfile = system.file("extdata", "msc01_10by10.csv.gz", package = "cifti")
 mat = read.csv(matfile, header = FALSE)
 msc01_refmat <- as.matrix(mat)
 print(msc01_refmat[1:5,1:5])
