@@ -4,8 +4,11 @@
 \alias{download_cifti_data}
 \title{Download CIFTI Test Data}
 \usage{
-download_cifti_data(outdir = system.file(package = "cifti"),
-  overwrite = FALSE, ...)
+download_cifti_data(
+  outdir = system.file(package = "cifti"),
+  overwrite = FALSE,
+  ...
+)
 }
 \arguments{
 \item{outdir}{Output directory for test file directory}

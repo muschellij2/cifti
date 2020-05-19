@@ -1,6 +1,7 @@
 #' @title Parse Surface from CIFTI
 #' @description Extracts information about Surfaces from CIFTI file
 #' @param nodeset Set of XML nodes corresponding to \code{Surface}
+#' @param verbose print diagnostic messages
 #'
 #' @return List of values
 #' @export
@@ -12,6 +13,11 @@
 #' parse_volume(nodeset)
 #' }
 parse_surface = function(nodeset) {
+  if (is.list(nodeset) &&
+      !inherits(nodeset, "xml_nodes") &&
+      !inherits(nodeset, "xml_nodeset")) {
+    return(lapply(nodeset, parse_surface))
+  }
   n_nodes = length(nodeset)
   all_attrs = xml_attrs(nodeset)
   all_attrs = lapply(all_attrs, as.list)
@@ -29,8 +35,12 @@ parse_surface = function(nodeset) {
 #' @rdname parse_surface
 #' @param fname filename of CIFTI file
 #' @export
-get_surface = function(fname) {
+get_surface = function(fname, verbose = TRUE) {
   nodes = matrix_ind_map_nodes(fname)
-  nodeset = xml_find_all(nodes, "./Surface")
+  nodeset = lapply(nodes, xml_find_all, xpath = "./Surface")
+  nodeset = keep_sub_nodeset(nodeset)
+  if (verbose) {
+    message("Parsing Surface Data")
+  }
   parse_surface(nodeset)
 }

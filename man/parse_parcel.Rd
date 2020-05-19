@@ -7,12 +7,14 @@
 \usage{
 parse_parcel(nodeset)
 
-get_parcel(fname)
+get_parcel(fname, verbose = TRUE)
 }
 \arguments{
 \item{nodeset}{Set of XML nodes corresponding to \code{Parcel}}
 
 \item{fname}{filename of CIFTI file}
+
+\item{verbose}{print diagnostic messages}
 }
 \value{
 List of values

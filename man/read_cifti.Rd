@@ -6,7 +6,7 @@
 \alias{readcii}
 \title{Read CIFTI File}
 \usage{
-read_cifti(fname, drop_data = TRUE, trans_data = TRUE)
+read_cifti(fname, drop_data = TRUE, trans_data = TRUE, verbose = TRUE)
 
 readCIFTI(fname, drop_data = TRUE, trans_data = TRUE)
 
@@ -18,6 +18,8 @@ readcii(fname, drop_data = TRUE, trans_data = TRUE)
 \item{drop_data}{Should the empty data dimensions be dropped?}
 
 \item{trans_data}{Should the data be transposed}
+
+\item{verbose}{print diagnostic messages}
 }
 \value{
 List of information from the CIFTI file

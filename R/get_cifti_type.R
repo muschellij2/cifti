@@ -2,6 +2,7 @@
 #' @description Wrapper for multiple types of CIFTI XML types.
 #' @param fname File name of CIFTI file
 #' @param type type of data to extract from CIFTI XML
+#' @param verbose print diagnostic messages
 #'
 #' @return List of output from each type
 #' @export
@@ -11,7 +12,8 @@ get_cifti_type = function(
   fname,
   type = c("Volume", "Surface",
            "Parcel",  "NamedMap",
-           "BrainModel")) {
+           "BrainModel"),
+  verbose = TRUE) {
   type = match.arg(type, several.ok = TRUE)
   func_name = function(run_type) {
     run_type = tolower(run_type)
@@ -22,6 +24,7 @@ get_cifti_type = function(
   funcs = func_name(type)
 
   args = list(fname = fname)
+  args$verbose = verbose
   res = lapply(funcs, do.call, args = args)
   names(res) = type
   L = sapply(res, length)

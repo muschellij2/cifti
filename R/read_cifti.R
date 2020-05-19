@@ -3,6 +3,7 @@
 #' @param fname file name of CIFTI file
 #' @param drop_data Should the empty data dimensions be dropped?
 #' @param trans_data Should the data be transposed
+#' @param verbose print diagnostic messages
 #'
 #' @return List of information from the CIFTI file
 #' @export
@@ -14,11 +15,13 @@
 #'    files, value = TRUE)
 #'    res = read_cifti(fname)
 #' }
-read_cifti = function(fname,
-                      drop_data = TRUE,
-                      trans_data = TRUE) {
+read_cifti = function(
+  fname,
+  drop_data = TRUE,
+  trans_data = TRUE,
+  verbose = TRUE) {
   fname = nii_fname(fname)
-  res = get_cifti_type(fname)
+  res = get_cifti_type(fname, verbose = verbose)
   data = cifti_data(fname)
 
   #########################################
@@ -51,6 +54,10 @@ read_cifti = function(fname,
   res$filename = fname
   res$drop_data = drop_data
   res$trans_data = trans_data
+
+  nodes = matrix_ind_map_nodes(fname)
+  at = lapply(nodes, xml_attrs)
+  res$matrix_indices_attributes = at
 
   class(res) = "cifti"
 

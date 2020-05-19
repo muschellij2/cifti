@@ -1,6 +1,7 @@
 #' @title Parse Volume from CIFTI
 #' @description Extracts information about Volumes from CIFTI file
 #' @param nodeset Set of XML nodes corresponding to \code{Volume}
+#' @param verbose print diagnostic messages
 #'
 #' @return List of values
 #' @export
@@ -12,6 +13,11 @@
 #' parse_volume(nodeset)
 #' }
 parse_volume = function(nodeset) {
+  if (is.list(nodeset) &&
+      !inherits(nodeset, "xml_nodes") &&
+      !inherits(nodeset, "xml_nodeset")) {
+    return(lapply(nodeset, parse_volume))
+  }
   n_nodes = length(nodeset)
   all_names = xml_attrs(nodeset,
                         "VolumeDimensions")
@@ -57,8 +63,12 @@ parse_volume = function(nodeset) {
 #' @rdname parse_volume
 #' @param fname filename of CIFTI file
 #' @export
-get_volume = function(fname) {
+get_volume = function(fname, verbose = TRUE) {
   nodes = matrix_ind_map_nodes(fname)
-  nodeset = xml_find_all(nodes, "./Volume")
+  nodeset = lapply(nodes, xml_find_all, xpath = "./Volume")
+  nodeset = keep_sub_nodeset(nodeset)
+  if (verbose) {
+    message("Parsing Volume Data")
+  }
   parse_volume(nodeset)
 }

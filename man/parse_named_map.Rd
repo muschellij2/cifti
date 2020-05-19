@@ -7,12 +7,14 @@
 \usage{
 parse_named_map(nodeset)
 
-get_named_map(fname)
+get_named_map(fname, verbose = TRUE)
 }
 \arguments{
 \item{nodeset}{Set of XML nodes corresponding to \code{NamedMap}}
 
 \item{fname}{filename of CIFTI file}
+
+\item{verbose}{print diagnostic messages}
 }
 \value{
 List of values

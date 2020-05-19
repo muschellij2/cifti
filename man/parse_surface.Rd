@@ -7,12 +7,14 @@
 \usage{
 parse_surface(nodeset)
 
-get_surface(fname)
+get_surface(fname, verbose = TRUE)
 }
 \arguments{
 \item{nodeset}{Set of XML nodes corresponding to \code{Surface}}
 
 \item{fname}{filename of CIFTI file}
+
+\item{verbose}{print diagnostic messages}
 }
 \value{
 List of values

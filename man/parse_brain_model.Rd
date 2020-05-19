@@ -7,12 +7,14 @@
 \usage{
 parse_brain_model(nodeset)
 
-get_brain_model(fname)
+get_brain_model(fname, verbose = TRUE)
 }
 \arguments{
 \item{nodeset}{Set of XML nodes corresponding to \code{BrainModel}}
 
 \item{fname}{filename of CIFTI file}
+
+\item{verbose}{print diagnostic messages}
 }
 \value{
 List of values

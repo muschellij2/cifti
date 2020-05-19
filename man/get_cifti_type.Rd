@@ -5,16 +5,23 @@
 \alias{cifti_as_list}
 \title{Get Generic CIFTI Type}
 \usage{
-get_cifti_type(fname, type = c("Volume", "Surface", "Parcel", "NamedMap",
-  "BrainModel"))
+get_cifti_type(
+  fname,
+  type = c("Volume", "Surface", "Parcel", "NamedMap", "BrainModel"),
+  verbose = TRUE
+)
 
-cifti_as_list(fname, type = c("Volume", "Surface", "Parcel", "NamedMap",
-  "BrainModel"))
+cifti_as_list(
+  fname,
+  type = c("Volume", "Surface", "Parcel", "NamedMap", "BrainModel")
+)
 }
 \arguments{
 \item{fname}{File name of CIFTI file}
 
 \item{type}{type of data to extract from CIFTI XML}
+
+\item{verbose}{print diagnostic messages}
 }
 \value{
 List of output from each type

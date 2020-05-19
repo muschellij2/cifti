@@ -12,6 +12,12 @@ cifti_brain_structs = function(file) {
   } else {
     cii = read_cifti(file)
   }
-  struct_names = sapply(cii$BrainModel, attr, "BrainStructure")
+  struct_names = sapply(cii$BrainModel, function(x) {
+    if (is.list(x)) {
+      return(sapply(x, attr, "BrainStructure"))
+    }
+    attr(x, "BrainStructure")
+  })
+  struct_names = unlist(struct_names)
   return(struct_names)
 }

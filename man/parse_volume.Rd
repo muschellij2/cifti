@@ -7,12 +7,14 @@
 \usage{
 parse_volume(nodeset)
 
-get_volume(fname)
+get_volume(fname, verbose = TRUE)
 }
 \arguments{
 \item{nodeset}{Set of XML nodes corresponding to \code{Volume}}
 
 \item{fname}{filename of CIFTI file}
+
+\item{verbose}{print diagnostic messages}
 }
 \value{
 List of values
