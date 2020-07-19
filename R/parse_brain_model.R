@@ -64,7 +64,23 @@ parse_brain_model = function(nodeset) {
         x = strsplit(x, " ")[[1]]
         x = as.numeric(x)
       })
-      verts = do.call("rbind", verts)
+      
+      ## === mjm 20200717
+      # Originally, the code expected newlines in the XML separating
+      # triples of voxel ijk indices, but many CIFTI files I've encountered
+      # (ones produced by the FieldTrip MATLAB functions) don't have these 
+      # newlines but rather a long string of space-delimited values of length 
+      # 3 x n_vertices. Adding the below condition to accommodate this possibility.
+      element_lengths = sapply(verts, length)
+      if (all(element_lengths) == 3)
+	     verts = do.call("rbind", verts)
+      else if (all(element_lengths) == 1)
+        verts = data.frame(
+          matrix(unlist(verts), ncol = 3, byrow = TRUE)
+        )
+      else
+        stop("Unrecognized or inconsistent voxel IJK sequence")
+
       colnames(verts) = c("i", "j", "k")
     }
     return(verts)
