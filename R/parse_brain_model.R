@@ -72,9 +72,9 @@ parse_brain_model = function(nodeset) {
       # newlines but rather a long string of space-delimited values of length 
       # 3 x n_vertices. Adding the below condition to accommodate this possibility.
       element_lengths = sapply(verts, length)
-      if (all(element_lengths) == 3)
-	     verts = do.call("rbind", verts)
-      else if (all(element_lengths) == 1)
+      if (all(element_lengths == 3))
+        verts = do.call("rbind", verts)
+      else if (all(element_lengths == 1))
         verts = data.frame(
           matrix(unlist(verts), ncol = 3, byrow = TRUE)
         )
