@@ -1,6 +1,16 @@
 language: R
-sudo: false
 cache: packages
+
+addons:
+  apt:
+    packages:
+    - libglu1-mesa-dev
+
+env:
+  global:
+    - RGL_USE_NULL=TRUE
+    - R_REMOTES_NO_ERRORS_FROM_WARNINGS=true
+    - _R_CHECK_FORCE_SUGGESTS_=false
 
 after_success:
   - Rscript -e 'covr::coveralls()'
