@@ -4,13 +4,20 @@ cache: packages
 addons:
   apt:
     packages:
-    - libglu1-mesa-dev
+      - libglu1-mesa-dev
+      - mesa-common-dev
 
 env:
   global:
     - RGL_USE_NULL=TRUE
     - R_REMOTES_NO_ERRORS_FROM_WARNINGS=true
     - _R_CHECK_FORCE_SUGGESTS_=false
+
+# before_install:
+#   - fname=travis_helpers.sh
+#   - wget -O ${fname} http://bit.ly/travis_helpers
+#   - cat ${fname}; source ${fname}; rm ${fname}  
+#   - glu_header;
 
 after_success:
   - Rscript -e 'covr::coveralls()'
