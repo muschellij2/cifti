@@ -25,7 +25,11 @@ get_cifti_type = function(
 
   args = list(fname = fname)
   args$verbose = verbose
-  res = lapply(funcs, do.call, args = args)
+  res = lapply(funcs, function(r) {
+    run_func = utils::getFromNamespace(r, "cifti")
+    do.call(run_func, args = args)
+  })
+
   names(res) = type
   L = sapply(res, length)
   res = res[L > 0]
