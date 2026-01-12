@@ -9,6 +9,8 @@ This is a Toolbox for Connectivity Informatics Technology Initiative
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/muschellij2/cifti/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/muschellij2/cifti/actions/workflows/R-CMD-check.yaml)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/cifti)](https://CRAN.R-project.org/package=cifti)
 <!-- badges: end -->
 
 ## Installation
