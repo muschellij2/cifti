@@ -29,11 +29,16 @@ mscfile = file.path(
   install_dir, 
   "sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii")
 if (!file.exists(mscfile)) {
-  res = download.file(url = paste0(
+  url = paste0(
     "https://openneuro.org/crn/datasets/ds000224/snapshots/00002/files/", 
     "derivatives:", "surface_pipeline:", "sub-MSC01:",
     "processed_restingstate_timecourses:",  "ses-func01:cifti:",
-    "sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii"), 
+    "sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii")
+  url = paste0("https://s3.amazonaws.com/openneuro/ds000224/ds000224_R1.0.2/",
+               "uncompressed/derivatives/surface_pipeline/sub-MSC01/", 
+               "processed_restingstate_timecourses/ses-func01/cifti/", 
+               "sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii")
+  res = download.file(url = url, 
     destfile = mscfile)
 }
 ```
@@ -82,7 +87,7 @@ dim(msc$data)
 msc$data[1:5,1:5]
 ```
 
-* If transepose is not set to *FALSE* (default is *TRUE*), it will return a 818 * 65890 that is filled correctly, and user just have to `t()` the `cii$data`
+* If transpose is not set to *FALSE* (default is *TRUE*), it will return a 818 * 65890 that is filled correctly, and user just have to `t()` the `cii$data`
 ```{r}
 t(msc_trans$data[1:5,1:5])
 ```

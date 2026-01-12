@@ -1,4 +1,4 @@
-#' @title Map CIFTI values to Coordinates using GIFTI
+#' @title Map CIfTI values to Coordinates using GIfTI
 #' @description Maps the data portion of CIFTI data set from a
 #' Brain Model to the xyz coordinate triangles
 #' @param file filename of CIFTI file or \code{cifti} object

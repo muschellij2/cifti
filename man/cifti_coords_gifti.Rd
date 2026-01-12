@@ -2,7 +2,7 @@
 % Please edit documentation in R/gifti_cifti.R
 \name{cifti_coords_gifti}
 \alias{cifti_coords_gifti}
-\title{Map CIFTI values to Coordinates using GIFTI}
+\title{Map CIfTI values to Coordinates using GIfTI}
 \usage{
 cifti_coords_gifti(file, gii_file, structure, add_one = TRUE)
 }

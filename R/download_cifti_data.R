@@ -10,10 +10,10 @@
 #'
 #' @importFrom utils download.file unzip
 download_cifti_data = function(
-  outdir = system.file(package = "cifti"),
-  overwrite = FALSE,
-  ...
-  ) {
+    outdir = system.file(package = "cifti"),
+    overwrite = FALSE,
+    ...
+) {
   # simple workaround for vignettes
   if (missing(outdir)) {
     if (outdir == "") {
@@ -31,9 +31,11 @@ download_cifti_data = function(
   expected_files = file.path("cifti-2_test_data", expected_files)
   out_files = file.path(outdir, expected_files)
   if (!all(file.exists(out_files)) || overwrite) {
-    url = paste0( "https://www.nitrc.org/frs/download.php",
-                  "/8541/cifti-2_test_data-1.2.zip")
-    destfile = basename(url)
+    # url = paste0( "https://www.nitrc.org/frs/download.php",
+    #               "/8541/cifti-2_test_data-1.2.zip")
+    # destfile = basename(url)
+    url = "https://www.nitrc.org/frs/download.php/8541"
+    destfile = "cifti-2_test_data-1.2.zip"
     destfile = file.path(outdir, destfile)
     download.file( url = url, destfile = destfile)
     out_files = unzip(destfile, exdir = outdir, files = expected_files,
@@ -51,8 +53,8 @@ download_cifti_data = function(
 #' @return Logical indicator
 #' @export
 have_cifti_test_data = function(
-  outdir = system.file(package = "cifti")
-  ) {
+    outdir = system.file(package = "cifti")
+) {
   # simple workaround for vignettes
   if (missing(outdir)) {
     if (outdir == "") {

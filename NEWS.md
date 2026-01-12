@@ -1,3 +1,8 @@
+# gifti 0.5.0
+
+* Fixing defunct issues with `rgl` package.
+* Fixes URL issues with openneuro.
+
 # 0.4.7
 
 * Fixing #6 so that multi-matrix data attributes are exported.

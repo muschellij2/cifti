@@ -75,7 +75,7 @@ colors <- colorRampPalette(
   ramp_cols
   )(ncol)[ii]
 
-rgl.triangles(left_surf$pointset, color = colors)
+rgl::triangles3d(left_surf$pointset, color = colors)
 
 
 ii <- cut(right$values,
@@ -85,16 +85,16 @@ ii <- cut(right$values,
 # n-1 equally spaced colors
 # colors <- colorRampPalette(
 #   c("red", "blue"))(ncol)[ii]
-rgl.triangles(right_surf$pointset, color = colors)
+rgl::triangles3d(right_surf$pointset, color = colors)
 
 
 # rgl.close()
 ```
 
 ```{r}
-rgl.open()
+rgl::open3d()
 
-rgl.triangles(left_surf$pointset, color = colors)
+rgl::triangles3d(left_surf$pointset, color = colors)
 
 left_mid = colMeans(left_surf$pointset)
 left_ranges = colRanges(left_surf$pointset)
@@ -114,8 +114,8 @@ right_mid = colMeans(right_surf$pointset)
 right_text = right_mid
 right_text[3] =  left_text[3]
 
-rgl.triangles(right_surf$pointset, color = colors)
-rgl.texts(x = right_text, text = "Right")
-rgl.viewpoint(0, -70)
+rgl::triangles3d(right_surf$pointset, color = colors)
+rgl::texts3d(x = right_text, text = "Right")
+rgl::view3d(0, -70)
 play3d(spin3d(), duration = 3)
 ```
