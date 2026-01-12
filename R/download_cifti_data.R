@@ -37,7 +37,7 @@ download_cifti_data = function(
     url = "https://www.nitrc.org/frs/download.php/8541"
     destfile = "cifti-2_test_data-1.2.zip"
     destfile = file.path(outdir, destfile)
-    download.file( url = url, destfile = destfile)
+    download.file( url = url, destfile = destfile, mode = "wb")
     out_files = unzip(destfile, exdir = outdir, files = expected_files,
                       overwrite = overwrite)
     file.remove(destfile)
