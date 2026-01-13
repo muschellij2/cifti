@@ -101,7 +101,7 @@ left_ranges = colRanges(left_surf$pointset)
 size_left = rowDiffs(left_ranges)
 left_text = left_mid
 left_text[3] = left_ranges[3,2] + size_left[3]/4
-rgl.texts(x = left_text, text = "Left")
+rgl::texts3d(x = left_text, text = "Left")
 
 
 
