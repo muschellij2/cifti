@@ -24,7 +24,10 @@ Using `download_cifti_data()` and `download.file` to download the test data.
 ```{r}
 library(cifti)
 download_cifti_data(outdir = install_dir)
+```
 
+Here we will download a NIfTI file from the MSC dataset:
+```{r}
 mscfile = file.path(
   install_dir, 
   "sub-MSC01_ses-func01_task-rest_bold_32k_fsLR.dtseries.nii")
