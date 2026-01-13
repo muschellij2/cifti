@@ -3,7 +3,15 @@
   if (!interactive()) return()
 
   package_name = "cifti"
-  x = citation(package_name)
+  suppressWarnings({
+    x = citation(package_name)
+  })
+  if (is.null(x[[1]]$year)) {
+    cc = class(x)
+    x = unclass(x)
+    x[[1]]$year = format(Sys.Date(), "%Y")
+    class(x) = cc
+  }
   x = format(x, "text")
   x = paste(x, collapse = "\n\n")
   ack <- c(
